@@ -1,8 +1,5 @@
-import { query } from "express";
-
 class Utils {
   getQuery(query: { page?: unknown; limit?: unknown }) {
-    console.log(query);
     let page = 1;
     let limit = 0;
     if (query.page && typeof +query.page === "number" && +query.page >= 1) {

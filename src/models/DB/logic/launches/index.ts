@@ -48,8 +48,6 @@ class LaunchDB {
         customers,
       };
 
-      console.log(launch);
-
       launches.push(launch);
     }
     await LaunchModel.insertMany(launches);
@@ -61,7 +59,7 @@ class LaunchDB {
       mission: "FalconSat",
     });
     if (firstLaunch) {
-      console.log("Launch data already loaded!");
+      console.log("Launches data already loaded!");
     } else {
       await this.populateLaunches();
     }

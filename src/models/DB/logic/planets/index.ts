@@ -19,7 +19,8 @@ class PlanetDB {
     );
   }
   async insert() {
-    if ((await PlanetsModel.count()) > 0) return console.log("Already");
+    if ((await PlanetsModel.count()) > 0)
+      return console.log("Planets data already loaded!");
     let planets: any[] = [];
     return new Promise((resolve, reject) => {
       fs.createReadStream(
@@ -50,7 +51,6 @@ class PlanetDB {
           reject(err);
         })
         .on("end", async () => {
-          console.log(planets);
           await PlanetsModel.insertMany(planets);
           console.log(`${planets.length} habitable planets found!`);
           resolve("");

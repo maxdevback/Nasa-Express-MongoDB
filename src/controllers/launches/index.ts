@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Utils from "../utils";
 import LaunchDB from "../../models/DB/logic/launches";
+import { IPostLaunchBody } from "./types";
 
 class LaunchesController {
   async getAll(req: Request, res: Response) {
@@ -12,7 +13,7 @@ class LaunchesController {
       res.send(err);
     }
   }
-  async addNew(req: Request, res: Response) {
+  async addNew(req: Request<{}, {}, IPostLaunchBody>, res: Response) {
     try {
       if (
         !req.body.mission ||
@@ -27,7 +28,7 @@ class LaunchesController {
       } else if (
         typeof req.body.mission !== "string" ||
         typeof req.body.rocket !== "string" ||
-        typeof req.body.launchDate !== "string" ||
+        new Date(req.body.launchDate).toString() === "Invalid Date" ||
         typeof req.body.target !== "string"
       ) {
         res.status(422);
@@ -42,6 +43,7 @@ class LaunchesController {
             error: response.error,
           });
         } else {
+          res.status(201);
           res.send(response);
         }
       }
