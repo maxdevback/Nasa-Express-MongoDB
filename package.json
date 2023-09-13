@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "App.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "test": "jest --detectOpenHandles",
-    "start": "node build/App.js",
+    "start": "node dist/App.js",
     "dev": "nodemon src/App.ts"
   },
   "author": "",
