@@ -2,16 +2,13 @@ import { config } from "dotenv";
 import { connect } from "mongoose";
 import express from "express";
 import routes from "./routes";
-import invalidRoute from "./routes/invalid";
 import LaunchDB from "./models/DB/logic/launches";
 import PlanetDB from "./models/DB/logic/planets";
 import path from "path";
-import cors from "cors";
 config();
 
 export const App = express();
 App.use("/", express.static(path.join(__dirname, "..", "public")));
-App.use(cors());
 App.use(express.json());
 App.use("/api", routes);
 App.use("*", (req, res) => {
